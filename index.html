@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Latin Soul Order</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay">
+      <p class="eyebrow">Rest e Bar • Okinawa</p>
+      <h1>Latin Soul</h1>
+      <p class="tagline">Authentic Peruvian flavor. Order ahead for pickup.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="primary-btn">Order Now</a>
+        <a href="#track" class="secondary-btn">Track Order</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="notice">
+      <strong>Version 7 Clean Build</strong>
+      <span>Tabs, menu buttons, cart, review, and Google Sheets submission are rebuilt cleanly.</span>
+    </section>
+
+    <section id="menu" class="section">
+      <div class="section-title">
+        <span>Menu</span>
+        <h2>Choose your order</h2>
+      </div>
+
+      <div class="tabs" id="tabs"></div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <section id="track" class="section">
+      <div class="section-title">
+        <span>Order Lookup</span>
+        <h2>Track or cancel an order</h2>
+      </div>
+      <div class="lookup-card">
+        <input id="lookupInput" placeholder="Example: LS-20260608-001">
+        <button id="lookupBtn" class="primary-btn" type="button">Search</button>
+        <div id="lookupResult"></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-header">
+      <h2>Your Order</h2>
+      <button id="closeCart" class="icon-btn" type="button">×</button>
+    </div>
+
+    <div id="cartItems"><p>Your cart is empty.</p></div>
+    <div class="cart-total"><span>Total</span><strong id="cartTotal">¥0</strong></div>
+
+    <p class="cart-hint">Review your items, enter pickup details, then continue to final review.</p>
+
+    <form id="checkoutForm" class="checkout">
+      <label>Name<input required name="name" placeholder="Customer name"></label>
+      <label>Phone<input required name="phone" placeholder="Phone number"></label>
+
+      <label>Preferred Contact
+        <select name="contactMethod" id="contactMethod">
+          <option>Phone</option>
+          <option>WhatsApp</option>
+          <option>LINE</option>
+          <option>Email</option>
+        </select>
+      </label>
+
+      <label>Contact Information
+        <input required name="contactInfo" id="contactInfo" placeholder="Phone number">
+        <small id="contactHelp">Enter the best phone number for order updates.</small>
+      </label>
+
+      <label>Pickup Time<input required name="pickup" type="time"></label>
+
+      <label>Payment
+        <select name="payment">
+          <option>Cash at pickup</option>
+          <option>Card at pickup</option>
+        </select>
+      </label>
+
+      <button class="primary-btn full" type="submit">Review Order</button>
+    </form>
+  </aside>
+
+  <section class="review-modal" id="reviewModal" aria-hidden="true">
+    <div class="review-box">
+      <div class="cart-header">
+        <h2>Review Your Order</h2>
+        <button id="closeReview" class="icon-btn" type="button">×</button>
+      </div>
+      <div id="reviewContent"></div>
+      <div class="review-actions">
+        <button class="secondary-btn" id="editOrderBtn" type="button">Edit Order</button>
+        <button class="primary-btn" id="finalSubmitBtn" type="button">Submit Final Order</button>
+      </div>
+    </div>
+  </section>
+
+  <button class="floating-cart" id="openCart" type="button">
+    Review Cart <span id="cartCount">0</span> • <strong id="floatingTotal">¥0</strong>
+  </button>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
