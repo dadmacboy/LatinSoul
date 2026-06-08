@@ -65,3 +65,14 @@ button:disabled{opacity:.65;cursor:not-allowed}
 .review-actions{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
 .toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--cream);color:var(--charcoal);border:2px solid var(--red);padding:12px 18px;z-index:1300;display:none}
 @media(max-width:600px){.hero{min-height:58vh}.food-img{height:150px}.section{padding-bottom:80px}}
+
+.call-btn{
+  margin-top:10px;
+}
+.call-note{
+  color:var(--red);
+  font-weight:bold;
+}
+.confirmation-box{
+  margin-top:12px;
+}

@@ -128,6 +128,8 @@ const MENU = [
     "desc": "Traditional purple corn drink."
   }
 ];
+const RESTAURANT_PHONE_DISPLAY = "ADD RESTAURANT PHONE NUMBER";
+const RESTAURANT_PHONE_DIAL = "";
 const GOOGLE_SHEETS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmePYO1e25PcZx3EF3XxPjx8XHyz6FXm1V-KWw91SvLIKFFMRWnZlHxoD_yuphj4q8/exec";
 
 let cart = {};
@@ -297,6 +299,32 @@ function buildOrderFromForm(form) {
   };
 }
 
+
+function restaurantCallButton() {
+  if (!RESTAURANT_PHONE_DIAL) {
+    return `<p class="call-note"><strong>Restaurant phone:</strong> ${RESTAURANT_PHONE_DISPLAY}</p>`;
+  }
+
+  return `
+    <a class="primary-btn call-btn" href="tel:${RESTAURANT_PHONE_DIAL}">
+      Call Restaurant
+    </a>
+  `;
+}
+
+function confirmationMessage(order) {
+  return `
+    <div class="order-result confirmation-box">
+      <h3>Order Received</h3>
+      <p><strong>Order Number:</strong> ${order.id}</p>
+      <p>Your order has been sent to Latin Soul.</p>
+      <p><strong>Changes or cancellations may only be requested while the order status is NEW.</strong></p>
+      <p>Call the restaurant immediately if you need to request a change or cancellation.</p>
+      ${restaurantCallButton()}
+    </div>
+  `;
+}
+
 function showReview(order) {
   const itemLines = order.items.map((item) => `
     <div class="review-line">
@@ -387,7 +415,7 @@ async function finalizeOrder() {
   closeReview();
 
   el("lookupInput").value = pendingOrder.id;
-  lookupOrder();
+  el("lookupResult").innerHTML = confirmationMessage(pendingOrder);
   location.hash = "track";
 
   pendingOrder = null;
